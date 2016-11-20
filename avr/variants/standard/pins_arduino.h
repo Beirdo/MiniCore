@@ -84,11 +84,19 @@
 #define __AVR_ATMEGA168__
 #define __AVR_ATMEGA168A__
 #define __AVR_ATMEGA168P__
+#elif defined(__AVR_ATmega168PB__)
+#define __AVR_ATMEGA168__
+#define __AVR_ATMEGA168B__
+#define __AVR_ATMEGA168P__
 #endif
 
 
 
+#if defined(__AVR_ATmega168PB__)
+#define NUM_DIGITAL_PINS            27
+#else
 #define NUM_DIGITAL_PINS            23
+#endif
 #define NUM_ANALOG_INPUTS           8  // 8 for TQFP, 6 for DIP 
 #define analogInputToDigitalPin(p)  ((p < 5) ? (p) + 14 : ((p < 8) ? (p) + 17) : -1)
 
@@ -106,6 +114,16 @@ static const uint8_t SCK  = 13;
 static const uint8_t SDA = 18;
 static const uint8_t SCL = 19;
 #define LED_BUILTIN 13
+
+#if defined(__AVR_ATmega168PB__)
+static const uint8_t SS1   = 23;
+static const uint8_t MOSI1 = 24;
+static const uint8_t MISO1 = 14;
+static const uint8_t SCK1  = 15;
+
+static const uint8_t SDA1 = 25;
+static const uint8_t SCL1 = 26;
+#endif
 
 static const uint8_t A0 = 14;
 static const uint8_t A1 = 15;
@@ -160,6 +178,9 @@ const uint16_t PROGMEM port_to_mode_PGM[] = {
 	(uint16_t) &DDRB,
 	(uint16_t) &DDRC,
 	(uint16_t) &DDRD,
+#if defined(__AVR_ATmega168PB__)
+	(uint16_t) &DDRE,
+#endif
 };
 
 const uint16_t PROGMEM port_to_output_PGM[] = {
@@ -168,6 +189,9 @@ const uint16_t PROGMEM port_to_output_PGM[] = {
 	(uint16_t) &PORTB,
 	(uint16_t) &PORTC,
 	(uint16_t) &PORTD,
+#if defined(__AVR_ATmega168PB__)
+	(uint16_t) &PORTE,
+#endif
 };
 
 const uint16_t PROGMEM port_to_input_PGM[] = {
@@ -176,6 +200,9 @@ const uint16_t PROGMEM port_to_input_PGM[] = {
 	(uint16_t) &PINB,
 	(uint16_t) &PINC,
 	(uint16_t) &PIND,
+#if defined(__AVR_ATmega168PB__)
+	(uint16_t) &PINE,
+#endif
 };
 
 const uint8_t PROGMEM digital_pin_to_port_PGM[] = {
@@ -202,6 +229,12 @@ const uint8_t PROGMEM digital_pin_to_port_PGM[] = {
 	PB, // PB6 - D20 / XTAL1
 	PB, // PB7 - D21 / XTAL2
 	PC, // PC6 - D22 / RESET
+#if defined(__AVR_ATmega168PB__)
+	PE, // PE2 - D23 / A6
+	PE, // PE3 - D24 / A7
+	PE, // PE0 - D25
+	PE, // PE1 - D26
+#endif
 };
 
 const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {
@@ -228,6 +261,12 @@ const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {
 	_BV(6), // PB6 - D20 / XTAL1
 	_BV(7), // PB7 - D21 / XTAL2
 	_BV(6), // PC6 - D22 / RESET
+#if defined(__AVR_ATmega168PB__)
+	_BV(2), // PE2 - D23 / A6
+	_BV(3), // PE3 - D24 / A7
+	_BV(0), // PE0 - D25
+	_BV(1), // PE1 - D26
+#endif
 };
 
 const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
@@ -269,6 +308,12 @@ const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
 	NOT_ON_TIMER, // PB6 - D20 / XTAL1
 	NOT_ON_TIMER, // PB7 - D21 / XTAL2
 	NOT_ON_TIMER, // PC6 - D22 / RESET
+#if defined(__AVR_ATmega168PB__)
+	NOT_ON_TIMER, // PE2 - D23 / A6
+	NOT_ON_TIMER, // PE3 - D24 / A7
+	NOT_ON_TIMER, // PE0 - D25
+	NOT_ON_TIMER, // PE1 - D26
+#endif
 };
 
 #endif
