@@ -127,7 +127,7 @@ menu.LTO=Compiler LTO
 168.upload.tool=avrdude
 168.upload.protocol=arduino
 168.upload.maximum_size=15872
-168.upload.maximum_data_size=1024
+168.upload.maximum_data_size=2048
 
 168.bootloader.tool=avrdude
 168.bootloader.unlock_bits=0x3f
@@ -142,7 +142,7 @@ menu.LTO=Compiler LTO
 168.menu.variant.modelP=168P / 168PA
 168.menu.variant.modelP.build.mcu=atmega168p
 168.menu.variant.modelPB=168PB
-168.menu.variant.modelPB.build.mcu=atmega168p
+168.menu.variant.modelPB.build.mcu=atmega168pb
 168.menu.variant.modelNonP=168 / 168A
 168.menu.variant.modelNonP.build.mcu=atmega168
 
